@@ -1,302 +1,61 @@
 /* CSS Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; width: 100%; margin: 0; padding: 0; }
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
-html, body {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
+:root {
+  color-scheme: light dark;
+  /* theme vars */
+  --bg: #ffffff;
+  --fg: #111111;
+  --yin: #ffffff;
+  --yang: #202020;
+  --buddha: #404148;
+  --shadow: rgba(0,0,0,0.10);
+  --anim: 5s;
 }
-
-body {
-  text-align: center;
-}
-
-.outer {
-  display: table;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-}
-
-.middle {
-  display: table-cell;
-  vertical-align: middle;
-}
-
-.inner {
-  margin: 0 auto;
-  width: 350px;
-}
-
-/*Text*/
-span {
-  font-family: monospace;
-  font-size: 1.5em;
-}
-
-span:after {
-  content: "_";
-  opacity: 0;
-  animation: cursor 1s infinite;
-}
-
-@keyframes cursor {
-  0% {
-    opacity: 0;
-  }
-  40% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b0b0b;
+    --fg: #eaeaea;
+    --yin: #000000;
+    --yang: #e6e6e6;
+    --buddha: #cfd1d6;
+    --shadow: rgba(255,255,255,0.12);
   }
 }
 
-/*The Buddha*/
-svg {
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 200px;
-  height: 200px;
-}
-svg .buddha {
-  fill: #404148;
-  -webkit-animation: hover 5s infinite;
-          animation: hover 5s infinite;
-  -webkit-animation-timing-function: ease;
-          animation-timing-function: ease;
-}
-svg .shadow {
-  filter: url(#blur);
-  opacity: 0.1;
-  -webkit-animation: scale 5s infinite;
-          animation: scale 5s infinite;
-  -webkit-animation-timing-function: ease;
-          animation-timing-function: ease;
-  transform-origin: 50% 50%;
-}
+body { text-align: center; background: var(--bg); color: var(--fg); min-height: 100%; font: 16px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+.outer { display: table; position: absolute; top: 0; left: 0; height: 100%; width: 100%; }
+.middle { display: table-cell; vertical-align: middle; }
+.inner { margin: 0 auto; width: 350px; }
 
-@-webkit-keyframes hover {
-  0% {
-    transform: translateY(0%);
-  }
-  50% {
-    transform: translateY(-10%);
-  }
-  100% {
-    transform: translateY(0%);
-  }
-}
+/* Text */
+span { font-family: monospace; font-size: 1.5em; color: var(--fg); letter-spacing: 0.02em; }
+span:after { content: "_"; opacity: 0; animation: cursor 1s infinite; }
+@keyframes cursor { 0%,40%{opacity:0;} 50%,90%{opacity:1;} 100%{opacity:0;} }
 
-@keyframes hover {
-  0% {
-    transform: translateY(0%);
-  }
-  50% {
-    transform: translateY(-10%);
-  }
-  100% {
-    transform: translateY(0%);
-  }
-}
-@-webkit-keyframes scale {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(0.8);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-@keyframes scale {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(0.8);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
+/* SVG */
+svg { margin-top: 20px; margin-left: auto; margin-right: auto; width: 200px; height: 200px; }
+svg .buddha { fill: var(--buddha); animation: hover var(--anim) ease infinite; }
+svg .shadow { filter: url(#blur); opacity: 0.1; animation: scale var(--anim) ease infinite; transform-origin: 50% 50%; }
 
-/*Taiji*/
-.circle {
-  width: 100px;
-  height:100px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 50px;
-  background: linear-gradient( to right, #fff 0%, #fff 50%, #202020 51%, #202020 100%);
-  border-radius: 50%;
-  overflow: hidden;
-  animation: 4s rotateAllTheTime linear  infinite;
-}
-.left {
-  
-  width: 50px;
-  height: 100px;
-  overflow: hidden;
-  background-color: #fff;
-  
-}
+@keyframes hover { 0%{transform:translateY(0%);} 50%{transform:translateY(-10%);} 100%{transform:translateY(0%);} }
+@keyframes scale { 0%{transform:scale(1);} 50%{transform:scale(0.8);} 100%{transform:scale(1);} }
 
-.left-semi-circle {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  background-color: #fff;
-  right: 50%;
-  transform: translateX(50%);
-/*   top: 50px; */
-  bottom: 0;
-  border-radius: 50%;
-  
-  animation: 4s expand linear infinite;
-  
-  /* border: 1px solid #001eff; */
-}
-.left-middle-circle {
-    border-radius: 100%;
-    width: 10px;
-    height: 10px;
-    bottom: 50%;
-    left: 50%;
-    transform: translate(-50%, 50%);
-    background-color: #202020;
-    /* border: 1px solid #001efff; */
-    position: absolute;
-}
-.right-semi-circle {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  background-color: #202020;
-  right: 50%;
-  transform: translateX(50%);
-  top: 0;
-  border-radius: 50%;
-  animation: 4s expandBlack linear infinite;
-}
-.right-middle-circle {
-   border-radius: 100%;
-    width: 10px;
-    height: 10px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-/*     border: 1px solid #001efff; */
-    position: absolute;
-}
+/* Taiji */
+.circle { width: 100px; height:100px; margin: 0 auto 50px; background: linear-gradient(to right, var(--yin) 0%, var(--yin) 50%, var(--yang) 51%, var(--yang) 100%); border-radius: 50%; overflow: hidden; animation: 4s rotateAllTheTime linear infinite; }
+.left { width: 50px; height: 100px; overflow: hidden; background-color: var(--yin); }
+.left-semi-circle { position: absolute; width: 50px; height: 50px; background-color: var(--yin); right: 50%; transform: translateX(50%); bottom: 0; border-radius: 50%; animation: 4s expand linear infinite; }
+.left-middle-circle { border-radius: 100%; width: 10px; height: 10px; bottom: 50%; left: 50%; transform: translate(-50%, 50%); background-color: var(--yang); position: absolute; }
+.right-semi-circle { position: absolute; width: 50px; height: 50px; background-color: var(--yang); right: 50%; transform: translateX(50%); top: 0; border-radius: 50%; animation: 4s expandBlack linear infinite; }
+.right-middle-circle { border-radius: 100%; width: 10px; height: 10px; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: var(--yin); position: absolute; }
 
-@keyframes rotateAllTheTime {
-  from {
-    transform: rotate(-360deg);
-  }
-}
+@keyframes rotateAllTheTime { from { transform: rotate(-360deg); } }
+@keyframes expand { from { height:50px; width:50px; } 10% { width:60px; height:60px; } 25% { height:100px; width:100px; } 26% { height:90px; width:90px; } 50% { width:50px; height:50px; } 51% { width:40px; height:40px; } 75% { width:0; height:0; } 76% { width:10px; height:10px; } to { height:50px; height:50px; } }
+@keyframes expandBlack { from { width:50px; height:50px; } 10% { width:40px; height:40px; } 25% { width:0; height:0; } 26% { width:10px; height:10px; } 50% { width:50px; height:50px; } 51% { width:60px; height:60px; } 75% { width:100px; height:100px; } 76% { width:90px; height:90px; } to { height:50px; width:50px; } }
 
-@keyframes expand {
-  from {
-    height: 50px;
-    width: 50px;
-  }
-  10% {
-    width: 60px;
-    height: 60px;
-/*     left: 20px; */
-  }
-  
-  25% {
-    height: 100px;
-    width: 100px;
-/*     top: 0px; */
-/*     left: 0px; */
-  }
-  26% {
-    height: 90px;
-    width: 90px;
-/*     top: 10px; */
-  }
-  50% {
-    width: 50px;
-    height: 50px;
-/*     top: 50px; */
-  }
-  51% {
-    width: 40px;
-    height: 40px;
-/*     top: 40px; */
-  }
-  75% {
-    width: 0px;
-    height: 0px;
-/*     top: 0px; */
-  }
-  76% {
-    width: 10px;
-    height: 10px;
-  }
-  to {
-    height: 50px;
-    height: 50px;
-/*     top: 0px; */
-
-  }
-}
-
-@keyframes expandBlack {
-  from {
-    width: 50px;
-    height: 50px;
-  }
-  10% {
-    width: 40px;
-    height: 40px;
-
-  }
-  25% {
-    width: 0px;
-    height: 0px;
-  }
-  26% {
-    width: 10px;
-    height: 10px;
-  }
-  50% {
-    width: 50px;
-    height: 50px;
-  }
-  51% {
-    width: 60px;
-    height: 60px;
-  }
-  75% {
-    width: 100px;
-    height: 100px;
-  }
-  76% {
-    width: 90px;
-    height: 90px;
-  }
-  to {
-    height: 50px;
-    width: 50px;
-  }
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .buddha, .shadow, .circle, .left-semi-circle, .right-semi-circle { animation: none !important; }
 }

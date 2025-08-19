@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <style>
+      :root { color-scheme: light dark; }
+      @media (prefers-color-scheme: dark) {
+        .yin { fill: #000; }
+        .yang { fill: #e6e6e6; }
+        .dot-dark { fill: #000; }
+        .dot-light { fill: #e6e6e6; }
+      }
+    </style>
+  </defs>
+  <!-- Minimal Taiji favicon that adapts to light/dark by default colors -->
+  <!-- Base halves -->
+  <path class="yin" d="M32 2a30 30 0 000 60c8.284 0 15-6.716 15-15s-6.716-15-15-15-15-6.716-15-15S23.716 2 32 2z" fill="#fff"/>
+  <path class="yang" d="M32 62a30 30 0 000-60C23.716 2 17 8.716 17 17s6.716 15 15 15 15 6.716 15 15-6.716 15-15 15z" fill="#202020"/>
+  <!-- Dots -->
+  <circle class="dot-dark" cx="32" cy="17" r="3" fill="#202020"/>
+  <circle class="dot-light" cx="32" cy="47" r="3" fill="#fff"/>
+</svg>
