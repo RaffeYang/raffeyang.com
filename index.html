@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="style.css?v=1">
 <html lang="en">
 
 <head>
@@ -13,10 +12,72 @@
 	<meta property="og:description" content="Contact: 'hi' at domain name">
 	<meta property="og:type" content="website">
 	<meta property="og:url" content="https://raffeyang.com/">
+	<link rel="canonical" href="https://raffeyang.com/">
 	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* CSS Reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { min-height: 100%; }
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+:root {
+  color-scheme: light dark;
+  /* theme vars */
+  --bg: #ffffff;
+  --fg: #111111;
+  --yin: #ffffff;
+  --yang: #202020;
+  --buddha: #404148;
+  --anim: 5s;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b0b0b;
+    --fg: #eaeaea;
+    --yin: #000000;
+    --yang: #e6e6e6;
+    --buddha: #cfd1d6;
+  }
+}
+
+body { text-align: center; background: var(--bg); color: var(--fg); font: 16px/1.4 monospace; }
+.outer { display: grid; place-items: center; min-height: 100vh; min-height: 100svh; padding: 24px 16px; }
+.middle { min-width: 0; width: 100%; }
+.inner { margin: 0 auto; width: 100%; max-width: 350px; }
+
+/* Text */
+span { font-family: monospace; font-size: 1.5em; color: var(--fg); letter-spacing: 0.02em; overflow-wrap: anywhere; }
+span:after { content: "_"; opacity: 0; animation: cursor 1s infinite; }
+@keyframes cursor { 0%,40%{opacity:0;} 50%,90%{opacity:1;} 100%{opacity:0;} }
+
+/* SVG */
+svg { margin-top: 20px; margin-left: auto; margin-right: auto; width: 200px; height: 200px; }
+svg .buddha { fill: var(--buddha); animation: hover var(--anim) ease infinite; }
+svg .shadow { filter: url(#blur); opacity: 0.1; animation: scale var(--anim) ease infinite; transform-origin: 50% 50%; }
+
+@keyframes hover { 0%{transform:translateY(0%);} 50%{transform:translateY(-10%);} 100%{transform:translateY(0%);} }
+@keyframes scale { 0%{transform:scale(1);} 50%{transform:scale(0.8);} 100%{transform:scale(1);} }
+
+/* Taiji */
+/* Morph fixed-size lobes with transforms; move dots separately to keep them 10px. */
+.circle { position: relative; width: 100px; height:100px; margin: 0 auto 50px; background: linear-gradient(to right, var(--yin) 0%, var(--yin) 50%, var(--yang) 51%, var(--yang) 100%); border-radius: 50%; overflow: hidden; animation: 4s rotateAllTheTime linear infinite; }
+.left { width: 50px; height: 100px; overflow: hidden; background-color: var(--yin); }
+.left-semi-circle { position: absolute; width: 50px; height: 50px; background-color: var(--yin); right: 50%; transform: translateX(50%); bottom: 0; border-radius: 50%; animation: 4s expand linear infinite; transform-origin: center bottom; }
+.left-middle-circle { position: absolute; z-index: 1; width: 10px; height: 10px; border-radius: 50%; left: 45px; top: 70px; background: var(--yang); animation: dot-drift 4s linear infinite; }
+.right-semi-circle { position: absolute; width: 50px; height: 50px; background-color: var(--yang); right: 50%; transform: translateX(50%); top: 0; border-radius: 50%; animation: 4s expandBlack linear infinite; transform-origin: center top; }
+.right-middle-circle { position: absolute; z-index: 1; width: 10px; height: 10px; border-radius: 50%; left: 45px; top: 20px; background: var(--yin); animation: dot-drift 4s linear infinite; }
+
+@keyframes rotateAllTheTime { from { transform: rotate(-360deg); } }
+@keyframes expand { 0%,50%,100% { transform: translateX(50%) scale(1); } 10% { transform: translateX(50%) scale(1.2); } 25% { transform: translateX(50%) scale(2); } 26% { transform: translateX(50%) scale(1.8); } 51% { transform: translateX(50%) scale(.8); } 75% { transform: translateX(50%) scale(0); } 76% { transform: translateX(50%) scale(.2); } }
+@keyframes expandBlack { 0%,50%,100% { transform: translateX(50%) scale(1); } 10% { transform: translateX(50%) scale(.8); } 25% { transform: translateX(50%) scale(0); } 26% { transform: translateX(50%) scale(.2); } 51% { transform: translateX(50%) scale(1.2); } 75% { transform: translateX(50%) scale(2); } 76% { transform: translateX(50%) scale(1.8); } }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; }
+}
+
+@keyframes dot-drift { 0%,50%,100% { transform: translateY(0); } 10% { transform: translateY(-5px); } 25% { transform: translateY(-25px); } 26% { transform: translateY(-20px); } 51% { transform: translateY(5px); } 75% { transform: translateY(25px); } 76% { transform: translateY(20px); } }
+</style>
 </head>
 
 <body>
@@ -24,20 +85,18 @@
 		<div class="middle">
 			<div class="inner">
 				<div class="circle" aria-hidden="true">
+					<div class="left-middle-circle"></div>
+					<div class="right-middle-circle"></div>
 					<div class="left">
-						<div class="left-semi-circle">
-							<div class="left-middle-circle"></div>
-						</div>
+						<div class="left-semi-circle"></div>
 					</div>
 					<div class="right">
-						<div class="right-semi-circle">
-							<div class="right-middle-circle"></div>
-						</div>
+						<div class="right-semi-circle"></div>
 					</div>
 				</div>
 				<span>Contact:'hi' at domain name</span>
 				<div class="svg__wrap" aria-hidden="true">
-					<svg viewBox="0 0 1000 1000" role="img" aria-label="">
+					<svg viewBox="0 0 1000 1000" width="200" height="200">
 						<defs>
 							<filter id="blur">
 								<feGaussianBlur stdDeviation="10" />
@@ -46,7 +105,7 @@
 						<path class="buddha" d="M500,596.2c0.8-0.9,244.4-238.3,0-238.3C255.7,357.8,498.9,595.1,500,596.2c-115.6-43.9-231.1-87.8-231.1,0
     C269,683.9,384.5,640,500,596.2L500,596.2L500,596.2c115.5,43.9,231,87.7,231,0C731,508.4,615.5,552.3,500,596.2z M500,352.8
     c28.2,0,51-30.6,51-68.3c0-37.7-22.8-68.3-51-68.3c-28.2,0-51,30.6-51,68.3C449,322.3,471.8,352.8,500,352.8z" />
-						<path class="shadow" style="filter:url(#blur)" d="M496.7,753.7c-106,0-191.9-13.4-191.9-29.8c0-16.5,85.9-29.8,191.9-29.8s191.9,13.4,191.9,29.8
+						<path class="shadow" d="M496.7,753.7c-106,0-191.9-13.4-191.9-29.8c0-16.5,85.9-29.8,191.9-29.8s191.9,13.4,191.9,29.8
 	C688.6,740.4,602.7,753.7,496.7,753.7z" />
 					</svg>
 				</div>
